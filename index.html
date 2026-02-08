@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carlos Miguel V. Bautista | Developer & DJ</title>
+  <meta name="description" content="Full-stack developer and DJ based in the Philippines. Specializing in web development, music production, and DJ services.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    
+    * {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    /* Glow effects */
+    .soft-glow {
+      box-shadow: 0 0 40px rgba(6, 182, 212, 0.15);
+    }
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(6, 182, 212, 0.6); }
+    }
+
+    /* Float animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(5deg); }
+      66% { transform: translateY(-10px) rotate(-5deg); }
+    }
+    .float { animation: float 6s ease-in-out infinite; }
+    .float-delayed { animation: float 8s ease-in-out infinite 2s; }
+
+    /* Wave animation */
+    @keyframes wave {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .wave { animation: wave 1.5s ease-in-out infinite; }
+    .wave-delay { animation: wave 1.5s ease-in-out infinite 0.3s; }
+    .wave-delay-2 { animation: wave 1.5s ease-in-out infinite 0.6s; }
+
+    /* Fade in animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #06b6d4 0%, #d946ef 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Card hover effects */
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Button gradient */
+    .btn-gradient {
+      background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-gradient:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    /* Orb animations for DJ section */
+    @keyframes orbit {
+      from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.5;
+    }
+    .orb-1 { width: 200px; height: 200px; background: #f97316; animation: float 6s ease-in-out infinite; }
+    .orb-2 { width: 150px; height: 150px; background: #8b5cf6; animation: float 8s ease-in-out infinite 2s; }
+    .orb-3 { width: 180px; height: 180px; background: #d946ef; animation: float 7s ease-in-out infinite 3s; }
+    .orb-4 { width: 120px; height: 120px; background: #ec4899; animation: float 9s ease-in-out infinite 4s; }
+
+    /* Form styles */
+    input, textarea {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+    }
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="#" class="text-2xl font-bold gradient-text flex items-center gap-2">
+          <i data-lucide="disc-3" class="w-8 h-8"></i>
+          CMB
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#tools" class="text-gray-300 hover:text-white transition-colors">Tools</a>
+          <a href="#development" class="text-gray-300 hover:text-white transition-colors">Development</a>
+          <a href="#dj" class="text-gray-300 hover:text-white transition-colors">DJ Services</a>
+          <a href="#production" class="text-gray-300 hover:text-white transition-colors">Production</a>
+          <a href="#skills" class="text-gray-300 hover:text-white transition-colors">Skills</a>
+          <a href="#contact" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-full transition-colors">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-white">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <div class="flex flex-col gap-4">
+          <a href="#tools" class="text-gray-300 hover:text-white transition-colors">Tools</a>
+          <a href="#development" class="text-gray-300 hover:text-white transition-colors">Development</a>
+          <a href="#dj" class="text-gray-300 hover:text-white transition-colors">DJ Services</a>
+          <a href="#production" class="text-gray-300 hover:text-white transition-colors">Production</a>
+          <a href="#skills" class="text-gray-300 hover:text-white transition-colors">Skills</a>
+          <a href="#contact" class="text-purple-400 hover:text-purple-300 transition-colors">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="flex-1 text-center lg:text-left">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+              Hi, I'm <span class="gradient-text">Carlos Miguel</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-300 mb-4">Full-Stack Developer & DJ</p>
+            <p class="text-gray-400 mb-8 max-w-xl">
+              Crafting exceptional digital experiences and unforgettable music experiences. Based in the Philippines, passionate about both code and creativity.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <a href="#development" class="btn-gradient px-6 py-3 rounded-full font-semibold">View Work</a>
+              <a href="#contact" class="px-6 py-3 border border-purple-500 text-purple-400 rounded-full font-semibold hover:bg-purple-500 hover:text-white transition-all">Contact Me</a>
+              <a href="#resume" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full font-semibold transition-colors flex items-center gap-2">
+                <i data-lucide="download" class="w-4 h-4"></i> Resume
+              </a>
+            </div>
+            <div class="flex gap-6 mt-8 justify-center lg:justify-start">
+              <a href="https://www.instagram.com/kojic_san/" target="_blank" class="text-gray-400 hover:text-pink-500 transition-colors">
+                <i data-lucide="instagram" class="w-6 h-6"></i>
+              </a>
+              <a href="https://github.com/MiguelLearningAI" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                <i data-lucide="github" class="w-6 h-6"></i>
+              </a>
+              <a href="https://linkedin.com/in/carlos-miguel-bautista-947784242/" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors">
+                <i data-lucide="linkedin" class="w-6 h-6"></i>
+              </a>
+            </div>
+          </div>
+          <div class="flex-1 flex justify-center">
+            <div class="relative">
+              <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full overflow-hidden soft-glow">
+                <img src="/files/Bautista, Carlos Miguel - PICTURE.jpg" alt="Carlos Miguel V. Bautista" class="w-full h-full object-cover">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+          <div class="text-center p-6 rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-800/10 border border-blue-800/30">
+            <div class="text-3xl sm:text-4xl font-bold text-blue-400 mb-2">2</div>
+            <div class="text-gray-400">Years Experience</div>
+          </div>
+          <div class="text-center p-6 rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-800/10 border border-purple-800/30">
+            <div class="text-3xl sm:text-4xl font-bold text-purple-400 mb-2">4</div>
+            <div class="text-gray-400">Projects Completed</div>
+          </div>
+          <div class="text-center p-6 rounded-2xl bg-gradient-to-br from-pink-900/30 to-pink-800/10 border border-pink-800/30">
+            <div class="text-3xl sm:text-4xl font-bold text-pink-400 mb-2">14</div>
+            <div class="text-gray-400">Events Played</div>
+          </div>
+          <div class="text-center p-6 rounded-2xl bg-gradient-to-br from-orange-900/30 to-orange-800/10 border border-orange-800/30">
+            <div class="text-3xl sm:text-4xl font-bold text-orange-400 mb-2">7</div>
+            <div class="text-gray-400">Remixes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-20 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Tools & Technologies</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Development -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/30 to-cyan-800/10 border border-cyan-800/30 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center">
+                <i data-lucide="code" class="w-6 h-6 text-cyan-400"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-cyan-400">Development</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Next.js</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">React</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">TypeScript</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Node.js</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Python</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Oracle SQL</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Unix</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Javascript</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Java</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Python</span>
+            </div>
+          </div>
+
+          <!-- Design -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-pink-900/30 to-pink-800/10 border border-pink-800/30 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center">
+                <i data-lucide="palette" class="w-6 h-6 text-pink-400"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-pink-400">Design</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm">Figma</span>
+              <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm">Tailwind CSS</span>
+              <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm">Photoshop</span>
+              <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm">Adobe Illustrator</span>
+              <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm">Adobe Premiere Pro</span>
+              <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm">Capcut</span>
+            </div>
+          </div>
+
+          <!-- Audio -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-violet-900/30 to-violet-800/10 border border-violet-800/30 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-full bg-violet-500/20 flex items-center justify-center">
+                <i data-lucide="headphones" class="w-6 h-6 text-violet-400"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-violet-400">Audio</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-violet-500/20 text-violet-300 rounded-full text-sm">FL Studio</span>
+              <span class="px-3 py-1 bg-violet-500/20 text-violet-300 rounded-full text-sm">Rekordbox</span>
+              <span class="px-3 py-1 bg-violet-500/20 text-violet-300 rounded-full text-sm">Serato</span>
+              <span class="px-3 py-1 bg-violet-500/20 text-violet-300 rounded-full text-sm">DJCity</span>
+              <span class="px-3 py-1 bg-violet-500/20 text-violet-300 rounded-full text-sm">Soundcloud</span>
+            </div>
+          </div>
+
+          <!-- DJ Gear -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-orange-900/30 to-orange-800/10 border border-orange-800/30 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center">
+                <i data-lucide="speaker" class="w-6 h-6 text-orange-400"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-orange-400">DJ Gear</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Hercules Inpulse 300 MK2</span>
+              <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">KZ ZSN Pro V2</span>
+              <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Macbook M1 2020</span>
+            </div>
+          </div>
+
+          <!-- Productivity -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-900/30 to-emerald-800/10 border border-emerald-800/30 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <i data-lucide="zap" class="w-6 h-6 text-emerald-400"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-emerald-400">Productivity</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Git</span>
+              <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Docker</span>
+              <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">VS Code</span>
+              <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Notion</span>
+              <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Bitbucket</span>
+              <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">Atlassian</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Development Portfolio Section -->
+    <section id="development" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-blue-900/10 to-transparent">
+      <div class="container mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Development Portfolio</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Project 1 -->
+          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="shopping-bag" class="w-8 h-8 text-blue-400"></i>
+              <h3 class="text-xl font-semibold">Fancy Factory</h3>
+            </div>
+            <p class="text-gray-400 mb-4">A website for Fancy Factory featuring a responsive design with purple branding, showcasing their senior-friendly offline contact tracking device through landing, information, product, and terms of service pages.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Tailwind CSS</span>
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Typescript</span>
+            </div>
+            <span class="text-sm text-blue-400">Full-Stack</span>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="bar-chart" class="w-8 h-8 text-purple-400"></i>
+              <h3 class="text-xl font-semibold">Big Planet</h3>
+            </div>
+            <p class="text-gray-400 mb-4">Big Planet's website is a single-file, elegantly styled music learning platform featuring an orange-accented monochromatic design, product showcases, team bios, and contact functionality, built for seamless Netlify deployment.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Tailwind CSS</span>
+              <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Typescript</span>
+              <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Javascript</span>
+            </div>
+            <span class="text-sm text-purple-400">Fullstack</span>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="message-square" class="w-8 h-8 text-pink-400"></i>
+              <h3 class="text-xl font-semibold">Brilliant Candle</h3>
+            </div>
+            <p class="text-gray-400 mb-4">This multi-page website project for Brilliant Candle combines a nostalgic, black-and-cream design with modern appointment tracking software tailored for a millennial audience.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm">Javascript</span>
+              <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-sm">CSS</span>
+            </div>
+            <span class="text-sm text-pink-400">Full-Stack</span>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="cloud" class="w-8 h-8 text-cyan-400"></i>
+              <h3 class="text-xl font-semibold">Swift Nectarine</h3>
+            </div>
+            <p class="text-gray-400 mb-4">A polished, responsive Next.js 16 website for Swift Nectarine featuring a landing page, products, contact form, and privacy policy with a minimal orange-themed design built with TypeScript, Tailwind CSS, and shadcn/ui components.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Next.js</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Tailwind CSS</span>
+              <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">Shadcn</span>
+            </div>
+            <span class="text-sm text-cyan-400">Full-Stack</span>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="smartphone" class="w-8 h-8 text-orange-400"></i>
+              <h3 class="text-xl font-semibold">Regiment Fitness Club</h3>
+            </div>
+            <p class="text-gray-400 mb-4">Gym front website.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">React Native</span>
+              <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Firebase</span>
+              <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm">Redux</span>
+            </div>
+            <span class="text-sm text-orange-400">Mobile</span>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="p-6 rounded-2xl bg-gray-900/80 border border-gray-800 card-hover">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="cpu" class="w-8 h-8 text-emerald-400"></i>
+              <h3 class="text-xl font-semibold">10tative rate website</h3>
+            </div>
+            <p class="text-gray-400 mb-4">Rate card for dance group 10tative.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">CSS</span>
+              <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">JavaScript</span>
+            </div>
+            <span class="text-sm text-emerald-400">Backend</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DJ Services Section -->
+    <section id="dj" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <!-- Animated Orbs -->
+      <div class="orb orb-1 absolute top-20 left-10"></div>
+      <div class="orb orb-2 absolute top-40 right-20"></div>
+      <div class="orb orb-3 absolute bottom-20 left-1/4"></div>
+      <div class="orb orb-4 absolute bottom-40 right-1/3"></div>
+
+      <div class="container mx-auto relative z-10">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">DJ Press Kit</h2>
+        <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Bringing energy and rhythm to every event. Professional DJ services for any occasion.</p>
+
+        <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
+          <div class="flex-1 relative">
+            <div class="relative rounded-2xl overflow-hidden">
+              <img src="/files/Page2Presskit.jpg" alt="DJ Performance" class="w-full h-100 object-cover">
+            </div>
+          </div>
+
+          <div class="flex-1">
+            <h3 class="text-2xl font-bold mb-6 gradient-text">DJ Koji</h3>
+            <p class="text-gray-300 mb-6">Open format DJ with over 11 months of experience in electronic music. Specializing in R&B, Hip Hop, and House genres. From club nights to private events, I bring the perfect vibe to any occasion.</p>
+            
+            <!-- Genre Badges -->
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1 bg-orange-500/30 text-orange-300 rounded-full text-sm">House</span>
+              <span class="px-3 py-1 bg-blue-500/30 text-blue-300 rounded-full text-sm">R&B</span>
+              <span class="px-3 py-1 bg-purple-500/30 text-purple-300 rounded-full text-sm">Hip-Hop</span>
+              <span class="px-3 py-1 bg-pink-500/30 text-pink-300 rounded-full text-sm">Top 40's</span>
+              <span class="px-3 py-1 bg-cyan-500/30 text-cyan-300 rounded-full text-sm">Deep House</span>
+              <span class="px-3 py-1 bg-emerald-500/30 text-emerald-300 rounded-full text-sm">Funky House</span>
+              <span class="px-3 py-1 bg-violet-500/30 text-violet-300 rounded-full text-sm">Beach House</span>
+              <span class="px-3 py-1 bg-yellow-500/30 text-yellow-300 rounded-full text-sm">Tech House</span>
+              <span class="px-3 py-1 bg-green-500/30 text-green-300 rounded-full text-sm">Afro House</span>
+              <span class="px-3 py-1 bg-red-500/30 text-red-300 rounded-full text-sm">Miami Bass</span>
+              <span class="px-3 py-1 bg-gray-500/30 text-gray-300 rounded-full text-sm">Trap</span>
+              <span class="px-3 py-1 bg-indigo-500/30 text-indigo-300 rounded-full text-sm">Baile Funk</span>
+              <span class="px-3 py-1 bg-teal-500/30 text-teal-300 rounded-full text-sm">Amapiano</span>
+              <span class="px-3 py-1 bg-lime-500/30 text-lime-300 rounded-full text-sm">Jersey Club</span>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4">
+              <div class="text-center p-4 rounded-xl bg-gradient-to-br from-purple-900/30 to-purple-800/10 border border-purple-800/30">
+                <div class="text-2xl font-bold text-purple-400">15</div>
+                <div class="text-gray-400 text-sm">Events</div>
+              </div>
+              <div class="text-center p-4 rounded-xl bg-gradient-to-br from-pink-900/30 to-pink-800/10 border border-pink-800/30">
+                <div class="text-2xl font-bold text-pink-400">11</div>
+                <div class="text-gray-400 text-sm">Months</div>
+              </div>
+              <div class="text-center p-4 rounded-xl bg-gradient-to-br from-blue-900/30 to-blue-800/10 border border-blue-800/30">
+                <div class="text-2xl font-bold text-blue-400">10K+</div>
+                <div class="text-gray-400 text-sm">Reach</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <h3 class="text-2xl font-bold text-center mb-8">DJ Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-orange-900/30 to-orange-800/10 border border-orange-800/30 card-hover">
+            <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center mb-4">
+              <i data-lucide="party-popper" class="w-6 h-6 text-orange-400"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-orange-400 mb-2">Club Events</h4>
+            <p class="text-gray-400 text-sm">High-energy sets for clubs and nightlife venues</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-800/10 border border-purple-800/30 card-hover">
+            <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4">
+              <i data-lucide="heart" class="w-6 h-6 text-purple-400"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-purple-400 mb-2">Weddings</h4>
+            <p class="text-gray-400 text-sm">Perfect atmosphere for your special day</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-pink-900/30 to-pink-800/10 border border-pink-800/30 card-hover">
+            <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center mb-4">
+              <i data-lucide="users" class="w-6 h-6 text-pink-400"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-pink-400 mb-2">Corporate Events</h4>
+            <p class="text-gray-400 text-sm">Professional sets for company gatherings</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-800/10 border border-blue-800/30 card-hover">
+            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
+              <i data-lucide="radio" class="w-6 h-6 text-blue-400"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-blue-400 mb-2">Private Parties</h4>
+            <p class="text-gray-400 text-sm">Customized playlists for private celebrations</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Production Section -->
+    <section id="production" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-violet-900/10 to-transparent">
+      <div class="container mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">Music Production</h2>
+        <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Creating remixes and providing production services for dancers.</p>
+
+        <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
+          <div class="flex-1">
+            <img src="/files/Page1Presskit.jpg" alt="Production Studio" class="w-full h-70 object-cover rounded-2xl">
+          </div>
+          <div class="flex-1">
+            <h3 class="text-2xl font-bold mb-6 gradient-text">Production Services</h3>
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl bg-gradient-to-r from-blue-900/30 to-blue-800/10 border border-blue-800/30">
+                <h4 class="font-semibold text-blue-400 mb-1">Beat Production</h4>
+                <p class="text-gray-400 text-sm">Custom beats and instrumentals for hip-hop, trap, and electronic music</p>
+              </div>
+              <div class="p-4 rounded-xl bg-gradient-to-r from-purple-900/30 to-purple-800/10 border border-purple-800/30">
+                <h4 class="font-semibold text-purple-400 mb-1">Mixing & Mastering</h4>
+                <p class="text-gray-400 text-sm">Professional mixing and mastering services for tracks and albums</p>
+              </div>
+              <div class="p-4 rounded-xl bg-gradient-to-r from-cyan-900/30 to-cyan-800/10 border border-cyan-800/30">
+                <h4 class="font-semibold text-cyan-400 mb-1">Vocal Processing</h4>
+                <p class="text-gray-400 text-sm">Professional vocal tuning, editing, and enhancement</p>
+              </div>
+               <!-- Google Drive Link -->
+              <div class="text-center mt-8">
+                <a href="https://drive.google.com/drive/folders/1ok8F_aZrxVEzm95nGsa4EyJP8MJHgibi?usp=sharing" class="inline-flex items-center gap-2 px-6 py-3 btn-gradient rounded-full font-semibold">
+                  <i data-lucide="folder" class="w-5 h-5"></i>
+                    View Full Portfolio on Google Drive
+                </a>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Creative Skills</h2>
+
+        <!-- Core Competencies -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-800/10 border border-blue-800/30 card-hover text-center">
+            <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="code-2" class="w-8 h-8 text-blue-400"></i>
+            </div>
+            <h4 class="font-semibold text-blue-400 mb-2">Web Development</h4>
+            <p class="text-gray-400 text-sm">Frontend & Backend</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-800/10 border border-purple-800/30 card-hover text-center">
+            <div class="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="music" class="w-8 h-8 text-purple-400"></i>
+            </div>
+            <h4 class="font-semibold text-purple-400 mb-2">Music Production</h4>
+            <p class="text-gray-400 text-sm">Beats & Sound Design</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-pink-900/30 to-pink-800/10 border border-pink-800/30 card-hover text-center">
+            <div class="w-16 h-16 rounded-full bg-pink-500/20 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="disc" class="w-8 h-8 text-pink-400"></i>
+            </div>
+            <h4 class="font-semibold text-pink-400 mb-2">DJ Performance</h4>
+            <p class="text-gray-400 text-sm">Live Mixing & Events</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/30 to-cyan-800/10 border border-cyan-800/30 card-hover text-center">
+            <div class="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="layout" class="w-8 h-8 text-cyan-400"></i>
+            </div>
+            <h4 class="font-semibold text-cyan-400 mb-2">UI/UX Design</h4>
+            <p class="text-gray-400 text-sm">User Experience</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-orange-900/30 to-orange-800/10 border border-orange-800/30 card-hover text-center">
+            <div class="w-16 h-16 rounded-full bg-orange-500/20 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="database" class="w-8 h-8 text-orange-400"></i>
+            </div>
+            <h4 class="font-semibold text-orange-400 mb-2">Database Design</h4>
+            <p class="text-gray-400 text-sm">Schema & Optimization</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-900/30 to-emerald-800/10 border border-emerald-800/30 card-hover text-center">
+            <div class="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="git-branch" class="w-8 h-8 text-emerald-400"></i>
+            </div>
+            <h4 class="font-semibold text-emerald-400 mb-2">Version Control</h4>
+            <p class="text-gray-400 text-sm">Git & Collaboration</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-violet-900/30 to-violet-800/10 border border-violet-800/30 card-hover text-center">
+            <div class="w-16 h-16 rounded-full bg-violet-500/20 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="mic" class="w-8 h-8 text-violet-400"></i>
+            </div>
+            <h4 class="font-semibold text-violet-400 mb-2">Audio Engineering</h4>
+            <p class="text-gray-400 text-sm">Mixing & Mastering</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-rose-900/30 to-rose-800/10 border border-rose-800/30 card-hover text-center">
+            <div class="w-16 h-16 rounded-full bg-rose-500/20 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="rocket" class="w-8 h-8 text-rose-400"></i>
+            </div>
+            <h4 class="font-semibold text-rose-400 mb-2">Project Management</h4>
+            <p class="text-gray-400 text-sm">Agile & Delivery</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
+      <div class="container mx-auto max-w-4xl">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">Get In Touch</h2>
+        <p class="text-gray-400 text-center mb-12">Have a project in mind? Let's create something amazing together!</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+
+          <!-- Contact Info -->
+           <div class="space-y-4">
+             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=carlosbautista050401@gmail.com&su=Client%20Inquiry&body=I%20would%20like%20to%20discuss%20a%20project%20with%20you." target="_blank" class="block p-6 rounded-2xl bg-gradient-to-br from-violet-900/30 to-violet-800/10 border border-violet-800/30 card-hover">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-violet-500/20 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="mail" class="w-6 h-6 text-violet-400"></i>
+                </div>
+              <div>
+                  <h4 class="font-semibold text-violet-400">E-mail</h4>
+                  <p class="text-gray-300">carlosbautista050401@gmail.com</p>
+                </div>
+              </div>
+            </a>
+            <a href="https://t.me/Miggychu?text=Hello%2C%20I%20would%20like%20to%20discuss%20a%20project%20with%20you." target="_blank" class="block p-6 rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-800/10 border border-blue-800/30 card-hover">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="telegram" class="w-6 h-6 text-blue-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-blue-400">Telegram</h4>
+                  <p class="text-gray-300">@Miggychu</p>
+                </div>
+              </div>
+            </a>
+            <a href="https://wa.me/9603096523?text=Hello%2C%20I%20would%20like%20to%20discuss%20a%20project%20with%20you." target="_blank" class="block p-6 rounded-2xl bg-gradient-to-br from-green-900/30 to-green-800/10 border border-green-800/30 card-hover">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="whatsapp" class="w-6 h-6 text-green-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-green-400">WhatsApp</h4>
+                  <p class="text-gray-300">+63 960 309 6523</p>
+                </div>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- Social Links -->
+          <div class="space-y-4">
+            <a href="https://www.instagram.com/kojic_san/" target="_blank" class="block p-6 rounded-2xl bg-gradient-to-br from-orange-900/30 to-orange-800/10 border border-orange-800/30 card-hover">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="instagram" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-orange-400">Instagram</h4>
+                  <p class="text-gray-300">@kojic_san</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://github.com" target="_blank" class="block p-6 rounded-2xl bg-gradient-to-br from-pink-900/30 to-pink-800/10 border border-pink-800/30 card-hover">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="github" class="w-6 h-6 text-pink-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-pink-400">GitHub</h4>
+                  <p class="text-gray-300">View Projects</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="py-20 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto max-w-4xl text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Download Resume</h2>
+        <p class="text-gray-400 mb-8">Get a detailed overview of my experience and skills.</p>
+        <a href="/files/RESUME_Portfolio.pdf" download class="inline-flex items-center gap-2 px-8 py-4 btn-gradient rounded-full font-semibold">
+          <i data-lucide="file-text" class="w-5 h-5"></i>
+          Download Resume (PDF)
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-black/50 border-t border-gray-800 mt-auto">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h4 class="text-xl font-bold gradient-text mb-4 flex items-center gap-2">
+            <i data-lucide="disc-3" class="w-6 h-6"></i> CMB
+          </h4>
+          <p class="text-gray-400 text-sm">Full-stack developer and DJ based in the Philippines. Crafting digital experiences and unforgettable music.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <div class="flex flex-col gap-2">
+            <a href="#tools" class="text-gray-400 hover:text-white transition-colors text-sm">Tools</a>
+            <a href="#development" class="text-gray-400 hover:text-white transition-colors text-sm">Development</a>
+            <a href="#dj" class="text-gray-400 hover:text-white transition-colors text-sm">DJ Services</a>
+            <a href="#contact" class="text-gray-400 hover:text-white transition-colors text-sm">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <div class="flex gap-4">
+            <a href="https://www.instagram.com/kojic_san/" target="_blank" class="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 hover:bg-orange-500 hover:text-white transition-all">
+              <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+            <a href="https://github.com/MiguelLearningAI" target="_blank" class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 hover:bg-pink-500 hover:text-white transition-all">
+              <i data-lucide="github" class="w-5 h-5"></i>
+            </a>
+            <a href="https://linkedin.com/in/carlos-miguel-bautista-947784242/" target="_blank" class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all">
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2026 Carlos Miguel V. Bautista. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('bg-black/80', 'backdrop-blur-lg', 'shadow-lg');
+      } else {
+        header.classList.remove('bg-black/80', 'backdrop-blur-lg', 'shadow-lg');
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Close mobile menu if open
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
+
+
